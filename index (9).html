@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Prof. Palash Mandal – Professor, Biological Sciences, CHARUSAT University | Liver Disease Research" />
+  <title>Prof. Palash Mandal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root, [data-theme="light"] {
+      --bg:        #f7f5f0;
+      --surface:   #ffffff;
+      --surface2:  #f0ede6;
+      --ink:       #1a1a1a;
+      --ink2:      #2e2e2e;
+      --muted:     #5a5a5a;
+      --rule:      #dedad2;
+      --accent:    #2a5f8f;
+      --accent2:   #b56b3a;
+      --accent-bg: #edf3f9;
+      --tag-bg:    #f0ede6;
+      --tag-ink:   #4a4a4a;
+      --timeline-line: #dedad2;
+      --badge-active-bg: #e8f0f8;
+      --badge-active-ink: #1a4a72;
+      --badge-past-bg: #f0ede6;
+      --badge-past-ink: #5a5a5a;
+      --serif:     'EB Garamond', Georgia, serif;
+      --sans:      'Inter', system-ui, sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg:        #141412;
+      --surface:   #1e1c19;
+      --surface2:  #252320;
+      --ink:       #ede9e0;
+      --ink2:      #ccc8bc;
+      --muted:     #807b6e;
+      --rule:      #2e2c28;
+      --accent:    #6aa3d4;
+      --accent2:   #d4895a;
+      --accent-bg: #1a2a3e;
+      --tag-bg:    #252320;
+      --tag-ink:   #a8a49a;
+      --timeline-line: #2e2c28;
+      --badge-active-bg: #1a2a3e;
+      --badge-active-ink: #7eb8e8;
+      --badge-past-bg: #252320;
+      --badge-past-ink: #807b6e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 15px; line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    a { color: var(--accent); text-decoration: none; transition: color .15s; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 5vw, 3.5rem); height: 52px;
+    }
+    .nav-name { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); letter-spacing: .01em; }
+    .nav-right { display: flex; align-items: center; gap: 1.6rem; }
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--muted); transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .nav-links a.pub-link {
+      color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      padding: 2px 10px; border-radius: 3px;
+    }
+    .nav-links a.pub-link:hover { background: var(--accent-bg); text-decoration: none; }
+    .theme-btn {
+      background: var(--surface2); border: 1px solid var(--rule);
+      border-radius: 20px; width: 52px; height: 27px;
+      cursor: pointer; position: relative; flex-shrink: 0; transition: background .25s;
+    }
+    .theme-btn::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 19px; height: 19px; border-radius: 50%;
+      background: var(--accent); transition: transform .25s;
+    }
+    [data-theme="dark"] .theme-btn::after { transform: translateX(25px); }
+    .theme-icon { position: absolute; top: 50%; transform: translateY(-50%); font-size: 11px; pointer-events: none; }
+    .theme-icon.sun { left: 6px; }
+    .theme-icon.moon { right: 5px; }
+
+    /* ── Layout ── */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 clamp(1.2rem, 5vw, 2rem); }
+    section { padding: 4rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
+    section:last-child { border-bottom: none; }
+
+    /* ── Section eyebrow ── */
+    .section-eyebrow {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 1.6rem;
+      line-height: 1.2;
+    }
+
+    /* ── About ── */
+    #about { padding-top: 5rem; }
+    .about-grid { display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: start; }
+    .about-grid h1 {
+      font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 400; line-height: 1.15; margin-bottom: .3rem; letter-spacing: -.01em; color: var(--ink);
+    }
+    .about-subtitle { font-family: var(--serif); font-size: 1.1rem; color: var(--muted); font-style: italic; margin-bottom: .3rem; }
+    .tagline { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .tagline em { color: var(--accent); font-style: normal; }
+    .about-body { font-size: 0.95rem; color: var(--ink2); max-width: 540px; }
+    .about-body p + p { margin-top: .85rem; }
+
+    .about-photo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .avatar {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      margin-top: 70px;
+      box-shadow: 0 12px 36px rgba(0,0,0,.15);
+    }
+    /* Fallback avatar initials */
+    .avatar-placeholder {
+      width: 200px; height: 250px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 3rem; color: #fff;
+      flex-shrink: 0; margin-top: 70px;
+    }
+    .social-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 6px;
+      max-width: 220px;
+      line-height: 2;
+    }
+    .social-row span { color: var(--muted); user-select: none; font-size: 0.78rem; }
+    .social-row a { font-size: 0.78rem; color: var(--accent); }
+    .social-row a:hover { color: var(--accent2); text-decoration: underline; }
+
+    /* ── Stats ── */
+    .stats-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.8rem; }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 6px; padding: .7rem 1.1rem; flex: 1; min-width: 100px; text-align: center;
+      transition: border-color .2s;
+    }
+    .stat-card:hover { border-color: var(--accent); }
+    .stat-num { font-family: var(--serif); font-size: 1.7rem; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; margin-top: .2rem; }
+
+    /* ── Research chips ── */
+    .research-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .research-chip {
+      font-size: 0.82rem; padding: 4px 12px; border-radius: 20px;
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      background: var(--accent-bg); color: var(--accent);
+      transition: background .2s, color .2s;
+    }
+    .research-chip:hover { background: var(--accent); color: #fff; }
+
+    /* ── Logo frame — used in experience & education ── */
+    .logo-frame {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .02em;
+      text-align: center;
+    }
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    /* ── Experience ── */
+    .exp-timeline { position: relative; padding-left: 28px; }
+    .exp-timeline::before {
+      content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--timeline-line);
+    }
+    .exp-card {
+      position: relative; margin-bottom: 1.6rem;
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 8px; padding: 1.1rem 1.3rem; transition: border-color .2s;
+    }
+    .exp-card:last-child { margin-bottom: 0; }
+    .exp-card:hover { border-color: var(--accent); }
+    .exp-card::before {
+      content: ''; position: absolute; left: -24px; top: 16px;
+      width: 9px; height: 9px; border-radius: 50%;
+      border: 2px solid var(--accent); background: var(--bg);
+    }
+    .exp-card.active-role::before { background: var(--accent); }
+    .exp-top-row {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: .5rem; flex-wrap: wrap; margin-bottom: .5rem;
+    }
+    .exp-left { flex: 1; min-width: 200px; }
+    .exp-role { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; }
+    .exp-org-line {
+      font-size: 0.82rem; color: var(--muted);
+      display: flex; align-items: center; flex-wrap: wrap; gap: .5rem;
+    }
+    .exp-org-line a { color: var(--accent); }
+    .exp-org-sep { color: var(--rule); }
+    .exp-right {
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: .3rem; flex-shrink: 0;
+    }
+    .exp-date { font-size: 0.73rem; font-weight: 500; letter-spacing: .04em; color: var(--accent2); white-space: nowrap; }
+    .status-pill {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+    }
+    .status-pill.active { background: var(--badge-active-bg); color: var(--badge-active-ink); }
+    .status-pill.past { background: var(--badge-past-bg); color: var(--badge-past-ink); }
+    .exp-divider { height: 1px; background: var(--rule); margin: .7rem 0; }
+    .exp-desc { font-size: 0.88rem; color: var(--ink2); line-height: 1.6; }
+
+    /* ── Awards ── */
+    .award-list { display: flex; flex-direction: column; }
+    .award-item {
+      display: flex; align-items: baseline; gap: 1rem;
+      padding: .75rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .award-item:last-child { border-bottom: none; }
+    .award-year { font-size: 0.75rem; color: var(--accent2); font-weight: 500; white-space: nowrap; min-width: 42px; }
+    .award-text { font-size: 0.9rem; color: var(--ink2); }
+
+    /* ── Education ── */
+    .edu-list { display: flex; flex-direction: column; }
+    .edu-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.1rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-body { flex: 1; min-width: 0; }
+    .edu-header {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 1rem; flex-wrap: wrap;
+    }
+    .edu-inst {
+      font-family: var(--serif); font-size: 1.02rem; color: var(--ink);
+      transition: color .15s;
+    }
+    .edu-item:hover .edu-inst { color: var(--accent); }
+    .edu-date { font-size: 0.73rem; color: var(--accent2); font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+    .edu-degree { font-size: 0.85rem; color: var(--muted); margin-top: .2rem; }
+    .edu-detail { font-size: 0.82rem; color: var(--accent); margin-top: .15rem; line-height: 1.5; }
+
+    /* ── Academic Identity ── */
+    .identity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .id-item {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 6px; padding: .7rem 1rem;
+      display: flex; align-items: center; gap: .75rem;
+      transition: border-color .2s;
+    }
+    .id-item:hover { border-color: var(--accent); }
+    .id-icon { font-size: 1.3rem; width: 28px; text-align: center; flex-shrink: 0; }
+    .id-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .id-value { font-size: 0.85rem; color: var(--ink); font-weight: 500; }
+
+    /* ── Memberships ── */
+    .member-list { display: flex; flex-direction: column; }
+    .member-item {
+      padding: .6rem 0; border-bottom: 1px solid var(--rule);
+      font-size: 0.88rem; color: var(--ink2);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .member-item:last-child { border-bottom: none; }
+    .member-item::before { content: '·'; color: var(--accent2); font-size: 1.2rem; flex-shrink: 0; }
+
+    /* ── Sponsored Projects ── */
+    .project-list { display: flex; flex-direction: column; gap: 1rem; }
+    .project-item {
+      padding: 1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0; transition: border-color .2s;
+    }
+    .project-item:hover { border-left-color: var(--accent2); }
+    .project-top {
+      display: flex; justify-content: space-between;
+      align-items: baseline; flex-wrap: wrap; gap: .2rem; margin-bottom: .3rem;
+    }
+    .project-name { font-family: var(--serif); font-size: 1rem; color: var(--ink); line-height: 1.4; }
+    .project-meta { font-size: 0.75rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+    .project-agency { font-size: 0.78rem; color: var(--accent2); }
+
+    /* ── Contact ── */
+    #contact { padding: 4rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .contact-card-header {
+      background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, var(--accent2)) 100%);
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .contact-card-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 1.4rem; color: #fff;
+      flex-shrink: 0; border: 2px solid rgba(255,255,255,0.4);
+    }
+    .contact-card-title { color: #fff; }
+    .contact-card-title h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; }
+    .contact-card-title p { font-size: 0.82rem; opacity: .8; margin-top: .1rem; }
+    .contact-card-body { padding: 1.5rem 2rem; display: grid; gap: 1.1rem; }
+    .contact-row { display: flex; align-items: center; gap: 1rem; }
+    .contact-icon-wrap {
+      width: 38px; height: 38px; flex-shrink: 0;
+      border-radius: 8px; background: var(--accent-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: background .2s;
+    }
+    .contact-row:hover .contact-icon-wrap { background: var(--accent); }
+    .contact-row-body { flex: 1; }
+    .contact-row-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); margin-bottom: .1rem; }
+    .contact-row-value { font-size: 0.95rem; color: var(--ink); font-weight: 500; }
+    .contact-row-value a { color: var(--accent); }
+    .contact-row-value a:hover { color: var(--accent2); }
+    .contact-card-footer {
+      border-top: 1px solid var(--rule);
+      padding: 1rem 2rem;
+      display: flex; gap: .7rem; flex-wrap: wrap;
+    }
+    .contact-badge {
+      font-size: 0.75rem; padding: 4px 12px; border-radius: 20px;
+      background: var(--accent-bg); color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+      transition: background .15s, color .15s;
+      text-decoration: none;
+    }
+    .contact-badge:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+    /* ── LinkedIn cards ── */
+    .linkedin-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .linkedin-card {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 8px; overflow: hidden; transition: border-color .2s;
+      display: flex; flex-direction: column; text-decoration: none; color: inherit;
+    }
+    .linkedin-card:hover { border-color: var(--accent); }
+    .linkedin-card-thumb {
+      height: 110px; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--accent-bg), var(--surface2));
+      display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
+    }
+    .linkedin-card-thumb img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: .85; transition: opacity .2s, transform .3s;
+    }
+    .linkedin-card:hover .linkedin-card-thumb img { opacity: 1; transform: scale(1.03); }
+    .linkedin-card-thumb .thumb-emoji { position: relative; z-index: 1; }
+    .linkedin-card-body { padding: .85rem 1rem; flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+    .linkedin-card-date { font-size: 0.7rem; color: var(--muted); }
+    .linkedin-card-text { font-size: 0.84rem; color: var(--ink2); line-height: 1.5; flex: 1; }
+    .linkedin-card-link { font-size: 0.75rem; font-weight: 500; color: var(--accent); margin-top: .4rem; display: inline-block; }
+
+    /* ── Footer ── */
+    footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.78rem; color: var(--muted); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    /* ── Responsive ── */
+    @media (max-width: 620px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { align-items: flex-start; margin-top: 1.5rem; }
+      .avatar, .avatar-placeholder { margin-top: 0; width: 120px; height: 150px; }
+      .social-row { max-width: 100%; }
+      .nav-links { display: none; }
+      .identity-grid { grid-template-columns: 1fr; }
+      .linkedin-grid { grid-template-columns: 1fr; }
+      .contact-card-header { padding: 1.2rem 1.3rem; }
+      .contact-card-body { padding: 1.2rem 1.3rem; }
+      .contact-card-footer { padding: .8rem 1.3rem; }
+      .exp-top-row { flex-direction: column; gap: .4rem; }
+      .exp-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Prof. Palash Mandal</span>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="publications.html" class="pub-link">Publications</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon sun">☀</span>
+        <span class="theme-icon moon">☾</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- ── ABOUT ── -->
+    <section id="about">
+      <div class="about-grid">
+
+        <!-- LEFT -->
+        <div>
+          <p class="section-eyebrow">About</p>
+          <h1>Palash Mandal</h1>
+          <p class="about-subtitle">Professor, Biological Sciences</p>
+          <p class="tagline">
+            <em>PDPIAS, CHARUSAT University</em> · Changa, Gujarat
+          </p>
+          <div class="about-body">
+            <p>
+              I am a Professor in the Department of Biological Sciences at
+              P. D. Patel Institute of Applied Sciences,
+              <a href="https://charusat.ac.in" target="_blank">CHARUSAT University</a>.
+              I am honored to be recognized among the
+              <strong>World's Top 5% Scientists</strong> in the 2025 SciRank Global Registry.
+            </p>
+            <p>
+              My research focuses on TLR4 signaling, oxidative stress and inflammation
+              in alcoholic and non-alcoholic fatty liver diseases (ALD/MASLD), gut
+              microbiota in liver disease, innate immunity, cytokines, and biomarkers
+              of apoptosis. I completed my postdoctoral and research associate training
+              at the <strong>Cleveland Clinic, USA (2003–2010)</strong>.
+            </p>
+            <p>
+              I serve as Associate Editor for
+              <em>Frontiers in Molecular Biosciences</em> and
+              <em>Frontiers in Gastroenterology</em>, and as Academic Editor for
+              <em>Scientific Reports</em>, <em>PLOS ONE</em>,
+              <em>Mediators of Inflammation</em>, and several other leading journals.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="about-photo">
+          <img
+            src="images/PM-PROFILE PIC.png"
+            alt="Prof. Palash Mandal"
+            class="avatar"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <!-- Fallback if image not found -->
+          <div class="avatar-placeholder" style="display:none;">PM</div>
+
+          <div class="social-row">
+            <a href="https://scholar.google.com/citations?user=6EteWhkAAAAJ&hl=en" target="_blank">Scholar</a><span>·</span>
+            <a href="https://www.linkedin.com/in/prof-palash-mandal-89591211/" target="_blank">LinkedIn</a><span>·</span>
+            <a href="https://www.researchgate.net/profile/Palash_Mandal" target="_blank">ResearchGate</a><span>·</span>
+            <a href="https://orcid.org/0000-0001-6612-3773" target="_blank">ORCID</a><span>·</span>
+            <a href="https://charusat.irins.org/profile/154244" target="_blank">IRINS</a><span>·</span>
+            <a href="https://loop.frontiersin.org/people/700830/overview" target="_blank">Frontiers</a><span>·</span>
+            <a href="https://www.scopus.com/authid/detail.uri?humanId=57194208707" target="_blank">Scopus</a><span>·</span>
+            <a href="https://www.webofscience.com/wos/author/record/682666" target="_blank">WoS</a><span>·</span>
+            <a href="mailto:palashmandal.bio@charusat.ac.in">Email</a><span>·</span>
+            <a href="publications.html">Publications →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">2946</div>
+          <div class="stat-label">Citations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">26</div>
+          <div class="stat-label">h-index</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">53</div>
+          <div class="stat-label">i10-index</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">42</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">22</div>
+          <div class="stat-label">Yrs Research</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8/5</div>
+          <div class="stat-label">PhD Students</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESEARCH ── -->
+    <section id="research">
+      <p class="section-eyebrow">Research Interests</p>
+      <div class="research-chips">
+        <span class="research-chip">TLR4 Signaling</span>
+        <span class="research-chip">Alcoholic Liver Disease (ALD)</span>
+        <span class="research-chip">MASLD / NAFLD</span>
+        <span class="research-chip">Gut Microbiota</span>
+        <span class="research-chip">Innate Immunity</span>
+        <span class="research-chip">Oxidative Stress</span>
+        <span class="research-chip">Cytokines &amp; Inflammation</span>
+        <span class="research-chip">Apoptosis Biomarkers</span>
+        <span class="research-chip">Inducible Gene Expression</span>
+        <span class="research-chip">Chemokine Function</span>
+        <span class="research-chip">Proteomic Profiling</span>
+        <span class="research-chip">Liver Disease Biomarkers</span>
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience">
+      <p class="section-eyebrow">Experience</p>
+      <div class="exp-timeline">
+
+        <!-- 1 -->
+        <div class="exp-card active-role">
+          <div class="exp-top-row">
+            <div class="exp-left">
+              <div class="exp-role">Professor</div>
+              <div class="exp-org-line">
+                <div class="logo-frame">
+                  <img src="images/charusat-logo.png" alt="CHARUSAT" onerror="this.parentElement.textContent='CU'">
+                </div>
+                <a href="https://charusat.ac.in" target="_blank">PDPIAS, CHARUSAT University</a>
+                <span class="exp-org-sep">·</span>
+                <span>Changa, Gujarat</span>
+              </div>
+            </div>
+            <div class="exp-right">
+              <span class="exp-date">Mar 2023 – Present</span>
+              <span class="status-pill active">Current</span>
+            </div>
+          </div>
+          <div class="exp-divider"></div>
+          <p class="exp-desc">Teaching, research, and administrative responsibilities. Research Coordinator of CHARUSAT University since 2018. Chief Editor of CHARUSAT Journal since 2017.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="exp-card">
+          <div class="exp-top-row">
+            <div class="exp-left">
+              <div class="exp-role">Professor &amp; In-Charge Principal</div>
+              <div class="exp-org-line">
+                <div class="logo-frame">
+                  <img src="images/charusat-logo.png" alt="CHARUSAT" onerror="this.parentElement.textContent='CU'">
+                </div>
+                <a href="https://charusat.ac.in" target="_blank">PDPIAS, CHARUSAT University</a>
+              </div>
+            </div>
+            <div class="exp-right">
+              <span class="exp-date">Jul 2020 – Feb 2023</span>
+              <span class="status-pill past">Completed</span>
+            </div>
+          </div>
+          <div class="exp-divider"></div>
+          <p class="exp-desc">Combined teaching and research with administrative leadership as In-Charge Principal of PDPIAS.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="exp-card">
+          <div class="exp-top-row">
+            <div class="exp-left">
+              <div class="exp-role">Associate Professor</div>
+              <div class="exp-org-line">
+                <div class="logo-frame">
+                  <img src="images/charusat-logo.png" alt="CHARUSAT" onerror="this.parentElement.textContent='CU'">
+                </div>
+                <a href="https://charusat.ac.in" target="_blank">PDPIAS, CHARUSAT University</a>
+              </div>
+            </div>
+            <div class="exp-right">
+              <span class="exp-date">Dec 2015 – Jun 2020</span>
+              <span class="status-pill past">Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 — FIXED: was missing closing > on inner div -->
+        <div class="exp-card">
+          <div class="exp-top-row">
+            <div class="exp-left">
+              <div class="exp-role">Assistant Professor, Biological Sciences</div>
+              <div class="exp-org-line">
+                <div class="logo-frame">
+                  <img src="images/bits-logo.png" alt="BITS" onerror="this.parentElement.textContent='BITS'">
+                </div>
+                <a href="https://bits-pilani.ac.in/hyderabad" target="_blank">BITS PILANI, Hyderabad Campus</a>
+              </div>
+            </div>
+            <div class="exp-right">
+              <span class="exp-date">Nov 2010 – Dec 2015</span>
+              <span class="status-pill past">Completed</span>
+            </div>
+          </div>
+          <div class="exp-divider"></div>
+          <p class="exp-desc">Teaching and research. Active DRC member. Instrumental in securing DST-FIST grant (₹1.5 Crore) for the Biological Sciences department. In-charge of Biotechnology, DST-FIST, and Animal Cell &amp; Tissue Culture lab.</p>
+        </div>
+
+        <!-- 5 -->
+        <div class="exp-card">
+          <div class="exp-top-row">
+            <div class="exp-left">
+              <div class="exp-role">Research Associate</div>
+              <div class="exp-org-line">
+                <div class="logo-frame">
+                  <img src="images/cleveland-clinic-logo.png" alt="Cleveland Clinic" onerror="this.parentElement.textContent='CC'">
+                </div>
+                <span>Department of Immunology &amp; Pathobiology · <strong>Cleveland Clinic, USA</strong></span>
+              </div>
+            </div>
+            <div class="exp-right">
+              <span class="exp-date">Jul 2007 – Oct 2010</span>
+              <span class="status-pill past">Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="exp-card">
+          <div class="exp-top-row">
+            <div class="exp-left">
+              <div class="exp-role">Postdoctoral Fellow</div>
+              <div class="exp-org-line">
+                <div class="logo-frame">
+                  <img src="images/cleveland-clinic-logo.png" alt="Cleveland Clinic" onerror="this.parentElement.textContent='CC'">
+                </div>
+                <span>Department of Immunology · <strong>Cleveland Clinic, USA</strong></span>
+              </div>
+            </div>
+            <div class="exp-right">
+              <span class="exp-date">Nov 2003 – Jun 2007</span>
+              <span class="status-pill past">Completed</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── AWARDS ── -->
+    <section id="awards">
+      <p class="section-eyebrow">Awards &amp; Recognition</p>
+      <div class="award-list">
+        <div class="award-item"><span class="award-year">2025</span><span class="award-text">Recognized among the <strong>World's Top 5% Scientists</strong> in the SciRank Global Registry</span></div>
+        <div class="award-item"><span class="award-year">2025</span><span class="award-text">Associate Editor — <em>Frontiers in Molecular Biosciences</em></span></div>
+        <div class="award-item"><span class="award-year">2025</span><span class="award-text">Academic Editor — <em>Scientific Reports</em></span></div>
+        <div class="award-item"><span class="award-year">2024</span><span class="award-text">Associate Editor — <em>Frontiers in Gastroenterology</em></span></div>
+        <div class="award-item"><span class="award-year">2024</span><span class="award-text">Academic Editor — <em>Mediators of Inflammation</em>, <em>Gastroenterology Research &amp; Practice</em>, <em>Discovery Applied Science</em></span></div>
+        <div class="award-item"><span class="award-year">2023</span><span class="award-text">Academic Editor — <em>PLOS ONE</em> and <em>Frontiers in Cell and Developmental Biology</em></span></div>
+        <div class="award-item"><span class="award-year">2008</span><span class="award-text">Travel Award, Society for Leukocyte Biology</span></div>
+      </div>
+    </section>
+
+    <!-- ── EDUCATION — FIXED ── -->
+    <section id="education">
+      <p class="section-eyebrow">Education</p>
+      <div class="edu-list">
+
+        <div class="edu-item">
+          <div class="logo-frame">
+            <img src="images/bose-institute-logo.png" alt="Bose Institute" onerror="this.parentElement.textContent='BI'">
+          </div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <span class="edu-inst">Bose Institute / Jadavpur University</span>
+              <span class="edu-date">2004</span>
+            </div>
+            <div class="edu-degree">Ph.D. in Biotechnology</div>
+            <div class="edu-detail">Thesis: Development and characterization of somatic hybrids between <em>Rorippa indica</em> and <em>Brassica Juncea</em></div>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="logo-frame">
+            <img src="images/kalyani-university-logo.png" alt="University of Kalyani" onerror="this.parentElement.textContent='KU'">
+          </div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <span class="edu-inst">University of Kalyani</span>
+              <span class="edu-date">1995</span>
+            </div>
+            <div class="edu-degree">M.Sc. in Biochemistry · First Class</div>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="logo-frame">
+            <img src="images/kolkata-university-logo.png" alt="University of Kolkata" onerror="this.parentElement.textContent='KU'">
+          </div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <span class="edu-inst">University of Kolkata</span>
+              <span class="edu-date">1993</span>
+            </div>
+            <div class="edu-degree">B.Sc. in Chemistry</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── ACADEMIC IDENTITY — FIXED (was: stray } instead of </div>) ── -->
+    <section id="identity">
+      <p class="section-eyebrow">Academic Identity</p>
+      <div class="identity-grid">
+
+        <div class="id-item">
+          <div class="id-icon">🆔</div>
+          <div>
+            <div class="id-label">ORCID</div>
+            <div class="id-value"><a href="https://orcid.org/0000-0001-6612-3773" target="_blank">0000-0001-6612-3773</a></div>
+          </div>
+        </div>
+
+        <div class="id-item">
+          <div class="id-icon">📊</div>
+          <div>
+            <div class="id-label">Scopus ID</div>
+            <div class="id-value"><a href="https://www.scopus.com/authid/detail.uri?authorId=57194208707" target="_blank">57194208707</a></div>
+          </div>
+        </div>
+
+        <div class="id-item">
+          <div class="id-icon">🔬</div>
+          <div>
+            <div class="id-label">Researcher ID</div>
+            <div class="id-value"><a href="https://www.webofscience.com/wos/author/record/682666" target="_blank">I-5238-2019</a></div>
+          </div>
+        </div>
+
+        <div class="id-item">
+          <div class="id-icon">🎓</div>
+          <div>
+            <div class="id-label">Google Scholar</div>
+            <div class="id-value"><a href="https://scholar.google.com/citations?user=6EteWhkAAAAJ&hl=en" target="_blank">6EteWhkAAAAJ</a></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── MEMBERSHIPS ── -->
+    <section id="memberships">
+      <p class="section-eyebrow">Professional Memberships</p>
+      <div class="member-list">
+        <div class="member-item">Society for Leukocyte Biology (since 2008)</div>
+        <div class="member-item">International Society for Hepatic Sinusoidal Research (since 2009)</div>
+        <div class="member-item">American Association of Immunologists (since 2009)</div>
+        <div class="member-item">American Society for Biochemistry and Molecular Biology (since 2010)</div>
+        <div class="member-item">International Society for Infectious Diseases (ISID) — Life Member</div>
+        <div class="member-item">Indian National Association for Study of the Liver (INASL) — Life Member (LM-001286)</div>
+        <div class="member-item">International Cytokine Society</div>
+        <div class="member-item">Indian Immunological Society</div>
+        <div class="member-item">Society of Biological Chemists (Membership No. 4178) — Life Member</div>
+        <div class="member-item">International Society for Environmental Information Sciences (ISEIS) — Life Member</div>
+        <div class="member-item">Scientific Research Society — Life Member</div>
+      </div>
+    </section>
+
+    <!-- ── SPONSORED PROJECTS ── -->
+    <section id="sponsored-projects">
+      <p class="section-eyebrow">Sponsored Research Projects</p>
+      <div class="project-list">
+
+        <div class="project-item">
+          <div class="project-top">
+            <span class="project-name">Role of Adipose Tissue in Ethanol-Induced Tissue Injury</span>
+            <span class="project-meta">2013 – 2016</span>
+          </div>
+          <div class="project-agency">DST · ₹25.00 Lakhs · Completed</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-top">
+            <span class="project-name">Novel Molecular Mechanism Involving Adenosine Receptors in Acceleration of Alcohol-Induced Hepatic Fibrosis</span>
+            <span class="project-meta">2013 – 2016</span>
+          </div>
+          <div class="project-agency">CSIR · ₹24.07 Lakhs · Completed</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-top">
+            <span class="project-name">Role of Anti-inflammatory Mediators in Alcohol-Induced Liver Injury</span>
+            <span class="project-meta">2012 – 2014</span>
+          </div>
+          <div class="project-agency">BITS RIG · ₹2.00 Lakhs · Completed</div>
+        </div>
+
+      </div>
+    </section>
+
+<!-- ── LINKEDIN ── -->
+<section id="linkedin">
+  <p class="section-eyebrow">Latest from LinkedIn</p>
+
+  <div class="linkedin-grid" style="margin-top:1rem;">
+
+    <!-- Card 1 -->
+    <a class="linkedin-card"
+       href="https://www.linkedin.com/posts/prof-palash-mandal-89591211_heartfelt-congratulations-to-ms-prashsti-activity-7476083793741758464-cdx1?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFq6oogBjDDJ68lB0yA7THy9_lNxseAf-Q0"
+       target="_blank">
+
+      <div class="linkedin-card-thumb">
+        <img src="images/post1.jpg" alt="Dr. Prashsti Chadha PhD Defense">
+      </div>
+
+      <div class="linkedin-card-body">
+        <div class="linkedin-card-date">
+          Dr. Prashsti Chadha's Successful PhD Defense
+        </div>
+
+        <div class="linkedin-card-text">
+          Congratulations to Dr. Prashsti Chadha on the successful defense of her PhD.
+          Her outstanding research on the gut–liver–brain axis and alcohol-induced
+          liver disease represents an important scientific contribution and marks a
+          significant milestone in her academic journey.
+        </div>
+
+        <span class="linkedin-card-link">View on LinkedIn ↗</span>
+      </div>
+
+    </a>
+
+    <!-- Card 2 -->
+    <a class="linkedin-card"
+       href="https://www.linkedin.com/posts/prof-palash-mandal-89591211_another-conference-another-invited-talk-activity-7475588250045140992-Y5Dx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFq6oogBjDDJ68lB0yA7THy9_lNxseAf-Q0"
+       target="_blank">
+
+      <div class="linkedin-card-thumb">
+        <img src="images/post2.jpg" alt="Immunocon 2026">
+      </div>
+
+      <div class="linkedin-card-body">
+        <div class="linkedin-card-date">
+          Invited Talk at Immunocon 2026
+        </div>
+
+        <div class="linkedin-card-text">
+          Honored to deliver another invited talk at the 53rd Annual Conference of
+          the Indian Immunology Society (Immunocon 2026), held at SKIMS, Srinagar.
+          It was a privilege to present my research and receive recognition from the
+          scientific community on a national platform.
+        </div>
+
+        <span class="linkedin-card-link">View on LinkedIn ↗</span>
+      </div>
+
+    </a>
+
+    <!-- Card 3 -->
+    <a class="linkedin-card"
+       href="https://www.linkedin.com/posts/prof-palash-mandal-89591211_publication-alert-another-small-contribution-activity-7473976226253103104-SLG8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFq6oogBjDDJ68lB0yA7THy9_lNxseAf-Q0"
+       target="_blank">
+
+      <div class="linkedin-card-thumb">
+        <img src="images/post3.jpg" alt="Publication Alert">
+      </div>
+
+      <div class="linkedin-card-body">
+        <div class="linkedin-card-date">
+          Publication Alert
+        </div>
+
+        <div class="linkedin-card-text">
+          Happy to share my contribution as a collaborator to a study published in
+          <em>The Lancet Infectious Diseases</em>. The work provides a comprehensive
+          analysis of the global burden of enteric infectious diseases across 204
+          countries, offering valuable insights for future public health strategies.
+        </div>
+
+        <span class="linkedin-card-link">View on LinkedIn ↗</span>
+      </div>
+
+    </a>
+
+  </div>
+</section>
+
+
+    <!-- ── CONTACT ── -->
+    <section id="contact">
+      <p class="section-eyebrow">Contact</p>
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-card-avatar">PM</div>
+          <div class="contact-card-title">
+            <h3>Prof. Palash Mandal</h3>
+            <p>Professor, Biological Sciences · PDPIAS, CHARUSAT University</p>
+          </div>
+        </div>
+        <div class="contact-card-body">
+          <div class="contact-row">
+            <div class="contact-icon-wrap">✉️</div>
+            <div class="contact-row-body">
+              <div class="contact-row-label">Email</div>
+              <div class="contact-row-value">
+                <a href="mailto:palashmandal.bio@charusat.ac.in">palashmandal.bio@charusat.ac.in</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon-wrap">🏛️</div>
+            <div class="contact-row-body">
+              <div class="contact-row-label">Institution</div>
+              <div class="contact-row-value">
+                <a href="https://charusat.ac.in" target="_blank">CHARUSAT University</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon-wrap">📍</div>
+            <div class="contact-row-body">
+              <div class="contact-row-label">Address</div>
+              <div class="contact-row-value">PDPIAS, Changa, Anand, Gujarat – 388421</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card-footer">
+          <a class="contact-badge" href="https://scholar.google.com/citations?user=6EteWhkAAAAJ&hl=en" target="_blank">Google Scholar</a>
+          <a class="contact-badge" href="https://www.researchgate.net/profile/Palash_Mandal" target="_blank">ResearchGate</a>
+          <a class="contact-badge" href="https://orcid.org/0000-0001-6612-3773" target="_blank">ORCID</a>
+          <a class="contact-badge" href="https://www.linkedin.com/in/prof-palash-mandal-89591211/" target="_blank">LinkedIn</a>
+          <a class="contact-badge" href="https://www.scopus.com/authid/detail.uri?humanId=57194208707" target="_blank">Scopus</a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer>
+    <p>Prof. Palash Mandal · PDPIAS, CHARUSAT University, Changa, Anand, Gujarat – 388421</p>
+    <p style="margin-top:.3rem; opacity:.6;">© 2026 · <a href="publications.html">Publications</a></p>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('pm-theme') || 'light';
+    html.setAttribute('data-theme', saved);
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('pm-theme', next);
+    });
+  </script>
+</body>
+</html>

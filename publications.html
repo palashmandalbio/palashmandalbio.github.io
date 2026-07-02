@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications - Prof. Palash Mandal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root, [data-theme="light"] {
+      --bg:        #f7f5f0;
+      --surface:   #ffffff;
+      --surface2:  #f0ede6;
+      --ink:       #1a1a1a;
+      --ink2:      #2e2e2e;
+      --muted:     #5a5a5a;
+      --rule:      #dedad2;
+      --accent:    #2a5f8f;
+      --accent2:   #b56b3a;
+      --accent-bg: #edf3f9;
+      --tag-bg:    #f0ede6;
+      --tag-ink:   #4a4a4a;
+      --serif:     'EB Garamond', Georgia, serif;
+      --sans:      'Inter', system-ui, sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg:        #141412;
+      --surface:   #1e1c19;
+      --surface2:  #252320;
+      --ink:       #ede9e0;
+      --ink2:      #ccc8bc;
+      --muted:     #807b6e;
+      --rule:      #2e2c28;
+      --accent:    #6aa3d4;
+      --accent2:   #d4895a;
+      --accent-bg: #1a2a3e;
+      --tag-bg:    #252320;
+      --tag-ink:   #a8a49a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 15px; line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 5vw, 3.5rem); height: 52px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .nav-back:hover { color: var(--accent); text-decoration: none; }
+    .nav-title { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .theme-btn {
+      background: var(--surface2); border: 1px solid var(--rule);
+      border-radius: 20px; width: 52px; height: 27px;
+      cursor: pointer; position: relative; flex-shrink: 0; transition: background .25s;
+    }
+    .theme-btn::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 19px; height: 19px; border-radius: 50%;
+      background: var(--accent); transition: transform .25s;
+    }
+    [data-theme="dark"] .theme-btn::after { transform: translateX(25px); }
+    .theme-icon { position: absolute; top: 50%; transform: translateY(-50%); font-size: 11px; pointer-events: none; }
+    .theme-icon.sun { left: 6px; }
+    .theme-icon.moon { right: 5px; }
+
+    /* ── Layout ── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 clamp(1.2rem, 5vw, 2rem); }
+
+    /* ── Header ── */
+    /* ── Publications Header Layout ───────────────────────── */
+.pub-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:2.5rem;
+}
+
+.pub-header-left{
+  flex:1;
+}
+
+.coauthor-box{
+  width:170px;
+  flex-shrink:0;
+  text-align:center;
+}
+
+.coauthor-box a{
+  display:block;
+  border:1px solid var(--rule);
+  background:var(--surface);
+  border-radius:8px;
+  overflow:hidden;
+  transition:.25s ease;
+}
+
+.coauthor-box a:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.coauthor-box img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  display:block;
+}
+
+.coauthor-caption{
+  margin-top:.45rem;
+  font-size:.72rem;
+  color:var(--muted);
+  line-height:1.3;
+}
+
+/* Mobile */
+@media (max-width:760px){
+  .pub-header{
+    flex-direction:column;
+  }
+
+  .coauthor-box{
+    width:180px;
+    margin-top:1rem;
+  }
+}
+    .pub-header h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 400; color: var(--ink); }
+    .pub-header .sub { font-size: 0.9rem; color: var(--muted); margin-top: .3rem; }
+    .pub-stats { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+    .pub-stat { font-size: 0.82rem; color: var(--muted); }
+    .pub-stat strong { color: var(--accent); font-size: 1rem; }
+
+    /* ── Controls ── */
+    .controls { position: sticky; top: 52px; z-index: 50; background: var(--bg); padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+    .search-wrap { position: relative; margin-bottom: .85rem; }
+    .search-input {
+      width: 100%; padding: .65rem 1rem .65rem 2.4rem;
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 6px; font-size: 0.9rem; color: var(--ink);
+      font-family: var(--sans); outline: none; transition: border-color .2s;
+    }
+    .search-input::placeholder { color: var(--muted); }
+    .search-input:focus { border-color: var(--accent); }
+    .search-icon {
+      position: absolute; left: .8rem; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: .9rem; pointer-events: none;
+    }
+    .filter-row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 0.72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: .3rem; }
+
+    /* Type filter pills */
+    .type-pills { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .type-pill {
+      font-size: 0.78rem; padding: 3px 12px; border-radius: 20px; cursor: pointer;
+      border: 1px solid var(--rule); background: var(--surface); color: var(--muted);
+      transition: all .15s; user-select: none;
+    }
+    .type-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .type-pill:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+    /* Sort */
+    .sort-select {
+      font-size: 0.78rem; padding: 3px 10px; border-radius: 4px;
+      border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+      cursor: pointer; outline: none; font-family: var(--sans);
+    }
+
+    /* ── Year group ── */
+    .year-group { margin-top: 2.5rem; }
+    .year-header {
+      display: flex; align-items: baseline; gap: 1rem;
+      padding-bottom: .5rem; margin-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .year-label { font-family: var(--serif); font-size: 1.6rem; color: var(--accent); }
+    .year-count { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── Publication card ── */
+    .pub-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 0; border-bottom: 1px solid var(--rule);
+      transition: background .15s;
+    }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-num {
+      font-size: 0.75rem; color: var(--muted); min-width: 28px;
+      font-variant-numeric: tabular-nums; padding-top: .15rem; text-align: right;
+    }
+    .pub-body { flex: 1; }
+    .pub-title {
+      font-size: 0.95rem; color: var(--ink); font-weight: 500;
+      line-height: 1.45; margin-bottom: .3rem;
+    }
+    .pub-authors { font-size: 0.82rem; color: var(--muted); margin-bottom: .25rem; line-height: 1.5; }
+    .pub-authors strong { color: var(--ink2); font-weight: 600; }
+    .pub-venue-row { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; }
+    .pub-venue { font-size: 0.8rem; color: var(--accent2); font-style: italic; }
+    .pub-if { font-size: 0.73rem; color: var(--muted); }
+    .pub-year-badge {
+      font-size: 0.7rem; padding: 1px 7px; border-radius: 3px;
+      background: var(--tag-bg); color: var(--tag-ink);
+    }
+    .type-badge {
+      font-size: 0.68rem; padding: 2px 7px; border-radius: 20px;
+      font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .type-badge.journal { background: #e8f0f8; color: #1a4a72; }
+    .type-badge.chapter { background: #f5ede4; color: #7a3a10; }
+    .type-badge.patent  { background: #e8f5e8; color: #1a5c1a; }
+    [data-theme="dark"] .type-badge.journal { background: #1a2a3e; color: #7eb8e8; }
+    [data-theme="dark"] .type-badge.chapter { background: #2e1e10; color: #d4895a; }
+    [data-theme="dark"] .type-badge.patent  { background: #1a2e1a; color: #7ec47e; }
+    .pdf-link {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: .04em;
+      padding: 2px 9px; border-radius: 3px;
+      background: var(--accent-bg); color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      text-transform: uppercase; transition: background .15s;
+    }
+    .pdf-link:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); text-decoration: none; }
+
+    /* No results */
+    .no-results { padding: 3rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+    /* ── Footer ── */
+    footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.78rem; color: var(--muted); }
+
+    @media (max-width: 560px) {
+      .pub-num { display: none; }
+      .filter-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-back" href="index.html">← Prof. Palash Mandal</a>
+    <span class="nav-title">Publications</span>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon sun">☀</span>
+        <span class="theme-icon moon">☾</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="pub-header">
+
+  <div class="pub-header-left">
+    <h1>Publications</h1>
+
+    <p class="sub">
+      View my
+      <a href="https://scholar.google.com/citations?user=6EteWhkAAAAJ&hl=en" target="_blank">
+        Google Scholar ↗
+      </a>
+    </p>
+
+    <div class="pub-stats">
+      <span class="pub-stat"><strong>42</strong> Journal Articles</span>
+      <span class="pub-stat"><strong>5</strong> Book Chapters</span>
+      <span class="pub-stat"><strong>1</strong> Patent</span>
+      <span class="pub-stat"><strong>2946</strong> Citations</span>
+      <span class="pub-stat"><strong>h-index - 26</strong></span>
+    </div>
+  </div>
+
+  <div class="coauthor-box">
+    <a href="images/coauthor-network.png" target="_blank">
+      <img src="images/coauthor-network.png" alt="Co-author Network">
+    </a>
+
+    <div class="coauthor-caption">
+      My Co-author Network
+    </div>
+  </div>
+
+</div>
+
+    <div class="controls">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" type="text" id="searchInput" placeholder="Search by title, author, journal, or keyword…" />
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Type:</span>
+        <div class="type-pills" id="typePills">
+          <span class="type-pill active" data-type="all">All</span>
+          <span class="type-pill" data-type="journal">Journal Articles</span>
+          <span class="type-pill" data-type="chapter">Book Chapters</span>
+          <span class="type-pill" data-type="patent">Patents</span>
+        </div>
+        <span class="filter-label" style="margin-left:.5rem;">Sort:</span>
+        <select class="sort-select" id="sortSelect">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="if_desc">Impact Factor ↓</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="pubList"></div>
+    <div id="noResults" class="no-results" style="display:none;">No publications match your search.</div>
+  </div>
+
+  <footer>
+    <p>Prof. Palash Mandal · <a href="index.html">← Back to Profile</a></p>
+    <p style="margin-top:.3rem; opacity:.6;">PDPIAS, CHARUSAT University · palashmandal.bio@charusat.ac.in</p>
+  </footer>
+
+  <script>
+    // ── DATA ─────────────────────────────────────────
+    const publications = [
+      // JOURNAL ARTICLES
+      {
+        type: 'journal', num: 1, year: 2026,
+        title: 'Synergistic Effect of Sodium Acetate and Sodium Butyrate in Ameliorating Ethanol-Induced Hepatic Inflammation Through Modulation of the NF-κB Signalling Pathway',
+        authors: 'Mananli Patel, Hiral Aghara, Prashsti Chadha, Harshraj Solanki, Vijay Thiruvenkatam and <strong>Palash Mandal</strong>',
+        venue: 'Mediators of Inflammation', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 2, year: 2026,
+        title: 'Global burden of enteric infectious diseases, diarrhoeal diseases, and corresponding aetiologies, 1990–2023: a systematic analysis for the Global Burden of Disease Study 2023',
+        authors: 'Avina Vongpradith, Regina-Mae Villanueva Dominguez, Lorainne Tudor Car, <strong>Palash Mandal</strong>, Hmwe Hmwe Kyu',
+        venue: 'The Lancet Infectious Diseases', if: 31.0, pdf: null
+      },
+      {
+        type: 'journal', num: 3, year: 2026,
+        title: 'Formulation of a Natural, Cost Effective Nanoemulsion Utilizing Rice Bran Oil, Chitosan and Gum Arabic: Emphasis On Shelf-Life Extension of Manilkara zapota',
+        authors: 'Divyesh Patel, Janki Patel, Nitin Varshney, Hiral Aghara, <strong>Palash Mandal</strong>, Anamika Jha',
+        venue: 'BioNanoScience', if: 4.00, pdf: null
+      },
+      {
+        type: 'journal', num: 4, year: 2025,
+        title: 'Modulation of TNFα-driven neuroinflammation by Gardenin A: Insights from In Vitro, In Vivo, and In Silico studies',
+        authors: 'Prashsti Chadha, Hiral Aghara, Harshraj Solanki, Vijay Thiruvenkatam and <strong>Palash Mandal</strong>',
+        venue: 'Frontiers in Pharmacology', if: 5.40, pdf: null
+      },
+      {
+        type: 'journal', num: 5, year: 2025,
+        title: 'Hepatic steatosis: associated rs2954029 and rs2605100 genetic factors in an Indian population',
+        authors: 'Dixa Sharma, BS Vaishnav, N Pandey, <strong>Palash Mandal</strong>',
+        venue: 'Discover Applied Sciences', if: 3.80, pdf: null
+      },
+      {
+        type: 'journal', num: 6, year: 2025,
+        title: 'Phycoerythrin from Aulosira fertilissima: A Bioactive Macromolecule for Longevity and Neuroprotection in SH-SY5Y Cells and Caenorhabditis elegans',
+        authors: 'B Sonavane, P Chadha, P Andhare, S Dube, NK Singh, <strong>Palash Mandal</strong>, Datta Madamwar',
+        venue: 'Biocatalysis and Agricultural Biotechnology', if: 4.60, pdf: null
+      },
+      {
+        type: 'journal', num: 7, year: 2025,
+        title: 'Gardenin A alleviates alcohol-induced oxidative stress and inflammation in HepG2 and Caco-2 cells via AMPK/Nrf2 pathway',
+        authors: 'Prashsti Chadha, Hiral Aghara, Hemant Kumar, Vijay Thiruvenkatam and <strong>Palash Mandal</strong>',
+        venue: 'Bioorganic Chemistry', if: 5.10, pdf: null
+      },
+      {
+        type: 'journal', num: 8, year: 2025,
+        title: 'Unraveling the Gut–Liver–Brain Axis: Microbiome, Inflammation, and Emerging Therapeutic Approaches',
+        authors: 'Hiral Aghara, Manali Patel, Prashsti Chadha, Ruchi Chaturvedi, and <strong>Palash Mandal</strong>',
+        venue: 'Mediators of Inflammation', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 9, year: 2025,
+        title: 'Silver Nanoparticles Synthesized from Enicostemma Littorale Exhibit Gut Tight Junction Restoration and Hepatoprotective Activity via Regulation of the Inflammatory Pathway',
+        authors: 'Hiral Aghara, Simran Samanta, Manali Patel, Prashsti Chadha and <strong>Palash Mandal</strong>',
+        venue: 'Pharmaceutics', if: 6.90, pdf: null
+      },
+      {
+        type: 'journal', num: 10, year: 2025,
+        title: 'Argyreia nervosa (Brum.f.) Bojer. alleviates diabetes mellitus-induced male infertility',
+        authors: 'Pooja Veljibhai Gori, Manan Raval, Samir Patel, Amit Patel, Nilay Solanki, Priyal Patel, Manish Nandpal, <strong>Palash Mandal</strong>',
+        venue: 'Molecular Biology Reports', if: 2.80, pdf: null
+      },
+      {
+        type: 'journal', num: 11, year: 2025,
+        title: 'Evaluating the potential of Halomonas pacifica DJ6.1 L-asparaginase: statistical production optimization, biochemical characterization and anticancer attributes using Caco-2 cell lines',
+        authors: 'Disha Joshi, Hiral Aghara, <strong>Palash Mandal</strong>, Darshan H Patel, Bhavtosh Kikani',
+        venue: 'International Journal of Biological Macromolecules', if: 8.70, pdf: null
+      },
+      {
+        type: 'journal', num: 12, year: 2025,
+        title: 'In Vitro, In Vivo, and In Silico Investigation of Synbiotic-Mediated Activation of PPAR-α Curtails Nonalcoholic Steatohepatitis (NASH) in Wistar Rats by Inhibiting PNPLA3/SREBP1-c Lead Inflammatory Injury of Hepatic Cells',
+        authors: 'Dixa Sharma, Dhara Patel and <strong>Palash Mandal</strong>',
+        venue: 'Mediators of Inflammation', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 13, year: 2025,
+        title: 'A Relative Measurement of Oxidative Stress in NAFLD Through Cyclic Voltammetry Method for Clinical Translation',
+        authors: 'Dixa Sharma, Bhalendu S, Pratik Pataniya, C. K. Sumesh and <strong>Palash Mandal</strong>',
+        venue: 'Gastroenterology Research & Practice', if: null, pdf: null
+      },
+      {
+        type: 'journal', num: 14, year: 2025,
+        title: 'Alcoholic Liver Disease Produced Advanced Glycation End Products: A driver to Chronic Kidney Disease?',
+        authors: 'Dixa Sharma, Richa Patel, Atharvaraj Hande and <strong>Palash Mandal</strong>',
+        venue: 'Indian Journal of Natural Sciences', if: null, pdf: null
+      },
+      {
+        type: 'journal', num: 15, year: 2024,
+        title: 'Mitigative Effect of Graphene Oxide Nanoparticle in Maintaining Gut-Liver Homeostasis against Alcohol Injury',
+        authors: 'Hiral Aghara, Prashsti Chadha, <strong>Palash Mandal</strong>',
+        venue: 'Gastroenterology Insights', if: 1.60, pdf: null
+      },
+      {
+        type: 'journal', num: 16, year: 2023,
+        title: 'Lipid Droplets Specific Fluorophore for Demarcation of Normal and Diseased Tissues',
+        authors: 'Deeksha Rajput, Dhara Patel, Amey Bait, <strong>Palash Mandal</strong>, Sriram Kanvah',
+        venue: 'ChemBioChem', if: 3.46, pdf: null
+      },
+      {
+        type: 'journal', num: 17, year: 2023,
+        title: 'Stress mechanism involved in the progression of alcoholic liver disease and the therapeutic efficacy of nanoparticles',
+        authors: 'Hiral Aghara, Prashsti Chadha, Devangi Zala, <strong>Palash Mandal</strong>',
+        venue: 'Frontiers in Immunology', if: 7.00, pdf: null
+      },
+      {
+        type: 'journal', num: 18, year: 2023,
+        title: 'In vitro, in vivo, and in silico analysis of synbiotics as preventive interventions for lipid metabolism in ethanol-induced adipose tissue injury',
+        authors: 'Dhara Patel, Pooja Rathaur, Kirti Parwani, Farhin Patel, Dixa Sharma, Kaid Johar, <strong>Palash Mandal</strong>',
+        venue: 'Lipids in Health & Disease', if: 6.90, pdf: null
+      },
+      {
+        type: 'journal', num: 19, year: 2022,
+        title: 'NAFLD: genetics and its clinical implications',
+        authors: 'Dixa Sharma and <strong>Palash Mandal</strong>',
+        venue: 'Clinics and Research in Hepatology and Gastroenterology', if: 3.19, pdf: null
+      },
+      {
+        type: 'journal', num: 20, year: 2022,
+        title: 'Gut Microbiota: Target for Modulation of Gut-Liver-Adipose Tissue Axis in Ethanol-Induced Liver Disease',
+        authors: 'Dhara Patel, Dixa Sharma and <strong>Palash Mandal</strong>',
+        venue: 'Mediators of Inflammation', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 21, year: 2021,
+        title: 'Prophylactic Treatment of Probiotic and Metformin Mitigates Ethanol-Induced Intestinal Barrier Injury: In-Vitro, In-Vivo, And In-Silico Approaches',
+        authors: 'Farhin Patel, Kirti Parwani, Priyashi Rao, Dhara Patel, Rakesh Rawal and <strong>Palash Mandal</strong>',
+        venue: 'Mediators of Inflammation', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 22, year: 2021,
+        title: 'Protective Effects of Swertiamarin against Methylglyoxal-Induced Epithelial-Mesenchymal Transition by Improving Oxidative Stress in Rat Kidney Epithelial (NRK-52E) Cells',
+        authors: 'Kirti Parwani, Farhin Patel, Dhara Patel and <strong>Palash Mandal</strong>',
+        venue: 'Molecules', if: 5.10, pdf: null
+      },
+      {
+        type: 'journal', num: 23, year: 2021,
+        title: 'Metformin and Probiotics Interplay in Amelioration of Ethanol-Induced Oxidative Stress and Inflammatory Response in an In Vitro and In Vivo Model of Hepatic Injury',
+        authors: 'Kirti Parwani, Farhin Patel and <strong>Palash Mandal</strong>',
+        venue: 'Mediators of Inflammation', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 24, year: 2020,
+        title: 'Role of advanced glycation end products and insulin resistance in diabetic nephropathy',
+        authors: 'Kirti Parwani and <strong>Palash Mandal</strong>',
+        venue: 'Archives of Physiology and Biochemistry', if: 4.07, pdf: null
+      },
+      {
+        type: 'journal', num: 25, year: 2018,
+        title: 'Evaluating the effect of diallyl sulfide on regulation of inflammatory mRNA expression in 3T3L1 adipocytes and RAW 264.7 macrophages during ethanol',
+        authors: 'Kema VH, Khan I and <strong>Mandal Palash</strong>',
+        venue: 'Drug and Chemical Toxicology', if: 2.80, pdf: null
+      },
+      {
+        type: 'journal', num: 26, year: 2017,
+        title: 'Protective Effects of Diallyl Sulfide Against Ethanol-Induced Injury in Rat Adipose Tissue and Primary Human Adipocytes',
+        authors: 'Kema VH, Khan I, Jamal R, Vishwakarma SK, Lakki Reddy C, Parwani K, Patel F, Patel D, Khan AA, <strong>Mandal Palash</strong>',
+        venue: 'Alcoholism: Clinical and Experimental Research', if: 3.80, pdf: null
+      },
+      {
+        type: 'journal', num: 27, year: 2017,
+        title: 'Potential Molecular Mechanism of Probiotics in Alcoholic Liver Disease',
+        authors: 'Dhara Patel, Farhin Patel and <strong>Palash Mandal</strong>',
+        venue: 'Journal of Alcoholism & Drug Dependence', if: 4.20, pdf: null
+      },
+      {
+        type: 'journal', num: 28, year: 2017,
+        title: 'Association of Advanced Glycation End Products (AGEs) with Diabetic Nephropathy and Alcohol Consumption',
+        authors: 'Kirti Parwani and <strong>Palash Mandal</strong>',
+        venue: 'Journal of Alcoholism & Drug Dependence', if: 4.20, pdf: null
+      },
+      {
+        type: 'journal', num: 29, year: 2015,
+        title: 'Effect of alcohol on adipose tissue',
+        authors: 'Harini Venkata, Nishank Reddy, Imran Khan and <strong>Palash Mandal</strong> (Corresponding Author)',
+        venue: 'Adipocyte', if: 4.90, pdf: null
+      },
+      {
+        type: 'journal', num: 30, year: 2014,
+        title: 'Protective role of HO-1 and carbon monoxide in ethanol-induced cell death in hepatocytes and liver injury in mice',
+        authors: '<strong>Palash Mandal</strong>*, Bakhit Bakhtiyarova*, Dola Das*, James Kaspar, Megan R. McMullen and Laura E. Nagy (* equal contribution)',
+        venue: 'Journal of Hepatology', if: 40.10, pdf: null
+      },
+      {
+        type: 'journal', num: 31, year: 2012,
+        title: 'Inhibition of apoptosis protects mice from ethanol-mediated acceleration of early markers of CCl4-induced fibrosis but not steatosis or inflammation',
+        authors: 'Roychowdhury S, Chiang DJ, <strong>Palash Mandal</strong>, Cohen JI, Pollard J, Feldstein AE, Nagy LE',
+        venue: 'Alcoholism: Clinical and Experimental Research', if: 3.80, pdf: null
+      },
+      {
+        type: 'journal', num: 32, year: 2011,
+        title: 'Molecular mechanism for adiponectin-dependent alternative macrophage polarization: Link between the metabolic and innate immune activity of full-length adiponectin',
+        authors: '<strong>Palash Mandal</strong>*, Pratt BT, Barnes M, McMullen MR, Nagy LE (* Corresponding Author)',
+        venue: 'Journal of Biological Chemistry', if: 5.60, pdf: null
+      },
+      {
+        type: 'journal', num: 33, year: 2010,
+        title: 'Adiponectin and heme oxygenase-1 suppress TLR4/MyD88-independent signaling in rat Kupffer cells and in mice after chronic ethanol exposure',
+        authors: '<strong>Palash Mandal</strong>, Roychowdhury S, Park PH, Pratt BT, Roger T, Nagy LE',
+        venue: 'Journal of Immunology', if: 6.00, pdf: null
+      },
+      {
+        type: 'journal', num: 34, year: 2010,
+        title: 'The anti-inflammatory effects of adiponectin are mediated via a heme oxygenase-1-dependent pathway in rat Kupffer cells',
+        authors: '<strong>Palash Mandal</strong>, Pilhoon Park, Megan R. McMullen, Brian T. Pratt and Laura E. Nagy',
+        venue: 'Hepatology', if: 18.00, pdf: null
+      },
+      {
+        type: 'journal', num: 35, year: 2010,
+        title: 'Anti-inflammatory pathways and alcoholic liver disease: Role of an adiponectin/interleukin-10/heme oxygenase-1 pathway',
+        authors: '<strong>Palash Mandal</strong>, MT. Pritchard and LE. Nagy',
+        venue: 'World Journal of Gastroenterology', if: 5.37, pdf: null
+      },
+      {
+        type: 'journal', num: 36, year: 2010,
+        title: 'Stress-sensitive regulation of TIS7/IFRD1 mRNA decay is mediated by an upstream ORF',
+        authors: 'C Zhao, S Datta, <strong>Palash Mandal</strong>, and TA Hamilton',
+        venue: 'Journal of Biological Chemistry', if: 5.60, pdf: null
+      },
+      {
+        type: 'journal', num: 37, year: 2008,
+        title: 'Suppression of Lipopolysaccharide-stimulated Tumor Necrosis Factor-α Production by Adiponectin Is Mediated by Transcriptional and Post-transcriptional Mechanisms',
+        authors: 'Park PH, Huang H, McMullen MR, <strong>Palash Mandal</strong>, Sun L, Nagy LE',
+        venue: 'Journal of Biological Chemistry', if: 5.60, pdf: null
+      },
+      {
+        type: 'journal', num: 38, year: 2008,
+        title: 'Chemokine and chemoattractant receptor expression: post-transcriptional regulation',
+        authors: 'TA. Hamilton, M Novotny, Datta, <strong>Palash Mandal</strong>, J Hartupee, J Tebo, and X Li',
+        venue: 'Journal of Leukocyte Biology', if: 6.01, pdf: null
+      },
+      {
+        type: 'journal', num: 39, year: 2008,
+        title: 'Tristetraprolin regulates CXCL1(KC) mRNA stability',
+        authors: 'S Datta, R Biswas, M Novotny, <strong>Palash Mandal</strong> and TA. Hamilton',
+        venue: 'Journal of Immunology', if: 6.00, pdf: null
+      },
+      {
+        type: 'journal', num: 40, year: 2007,
+        title: 'Signaling in Lipopolysaccharide-Induced Stabilization of Formyl Peptide Receptor 1 mRNA in Mouse Peritoneal Macrophages',
+        authors: '<strong>Palash Mandal</strong> and TA Hamilton',
+        venue: 'Journal of Immunology', if: 6.00, pdf: null
+      },
+      {
+        type: 'journal', num: 41, year: 2005,
+        title: 'LPS induces formyl peptide receptor 1 gene expression in macrophage and neutrophils via transcriptional and post transcriptional mechanisms',
+        authors: '<strong>Palash Mandal</strong>, Novotny M, Hamilton T',
+        venue: 'Journal of Immunology', if: 6.00, pdf: null
+      },
+      {
+        type: 'journal', num: 42, year: 2003,
+        title: 'Plant regeneration from mesophyll protoplast of Rorippa indica (L.) Hiren, a wild crucifer',
+        authors: '<strong>Palash Mandal</strong>, Sikdar SR',
+        venue: 'Current Science', if: null, pdf: null
+      },
+
+      // BOOK CHAPTERS
+      {
+        type: 'chapter', num: 1, year: 2024,
+        title: 'Advanced glycation end products and insulin resistance in diabetic nephropathy',
+        authors: 'Kirti Parwani &amp; <strong>Palash Mandal</strong>',
+        venue: 'Vitamins & Hormones (Elsevier)',
+        doi: 'https://doi.org/10.1016/bs.vh.2024.02.007', if: null, pdf: null
+      },
+      {
+        type: 'chapter', num: 2, year: 2020,
+        title: 'Effect of Alcohol on Gut-Liver Axis and Adipose Tissue',
+        authors: 'Dhara Patel and <strong>Palash Mandal</strong>',
+        venue: 'Book: Adipose Tissue – An Update (ISBN: 978-1-83880-122-9)', if: null, pdf: null
+      },
+      {
+        type: 'chapter', num: 3, year: 2019,
+        title: 'Neurodegenerative Diseases and Their Therapeutic Approaches',
+        authors: 'Farhin Patel, <strong>Palash Mandal</strong>',
+        venue: 'Book: Neurons – Dendrites and Axons (ISBN: 978-1-78985-124-3)', if: null, pdf: null
+      },
+      {
+        type: 'chapter', num: 4, year: 2018,
+        title: 'Effect of Alcohol on Brain Development',
+        authors: 'Farhin Patel, <strong>Palash Mandal</strong>',
+        venue: 'Book: Drug Addiction (ISBN: 978-1-78923-371-1)', if: null, pdf: null
+      },
+      {
+        type: 'chapter', num: 5, year: 2015,
+        title: 'Stellate Cells in Alcoholic Hepatitis',
+        authors: '<strong>Palash Mandal</strong> (First Author), Prof. Laura E Nagy (Co-Author)',
+        venue: 'Book: Stellate Cells in Health and Disease (Elsevier, ISBN: 978-0-12-800134-9). Editors: C. Shekhar Gandhi, Massimo Pinzani', if: null, pdf: null
+      },
+
+      // PATENT
+      {
+        type: 'patent', num: 1, year: 2025,
+        title: 'Formulation for Diabetes Mellitus-Induced Male Infertility',
+        authors: 'Dr. Manan Raval, Dr. Samir Patel, Dr. Amit Patel, Dr. Nilay Solanki, <strong>Dr. Palash Mandal</strong>, Ms. Pooja Gori',
+        venue: 'Patent Application No. 202421048295 · Published 30/05/2025 · The Patent Office Journal No. 22/2025',
+        if: null, pdf: null
+      }
+    ];
+
+    // ── Render ──────────────────────────────────────
+    const container = document.getElementById('pubList');
+    const noResults = document.getElementById('noResults');
+    let currentType = 'all';
+    let currentSort = 'newest';
+    let currentSearch = '';
+
+    function typeLabel(t) {
+      return { journal: 'Journal Article', chapter: 'Book Chapter', patent: 'Patent' }[t] || t;
+    }
+
+    function filtered() {
+      let data = [...publications];
+      if (currentType !== 'all') data = data.filter(p => p.type === currentType);
+      if (currentSearch) {
+        const q = currentSearch.toLowerCase();
+        data = data.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.authors.toLowerCase().includes(q) ||
+          p.venue.toLowerCase().includes(q) ||
+          String(p.year).includes(q)
+        );
+      }
+      if (currentSort === 'newest') data.sort((a,b) => b.year - a.year);
+      else if (currentSort === 'oldest') data.sort((a,b) => a.year - b.year);
+      else if (currentSort === 'if_desc') data.sort((a,b) => (b.if||0) - (a.if||0));
+      return data;
+    }
+
+    function render() {
+      const data = filtered();
+      container.innerHTML = '';
+      noResults.style.display = data.length ? 'none' : '';
+      if (!data.length) return;
+
+      // Group by year (for newest/oldest sort) or flat for IF sort
+      if (currentSort === 'if_desc') {
+        const group = document.createElement('div');
+        group.className = 'year-group';
+        const hdr = document.createElement('div');
+        hdr.className = 'year-header';
+        hdr.innerHTML = `<span class="year-label">All · Sorted by Impact Factor</span><span class="year-count">${data.length} item${data.length!==1?'s':''}</span>`;
+        group.appendChild(hdr);
+        data.forEach((p, i) => group.appendChild(pubCard(p, i+1)));
+        container.appendChild(group);
+        return;
+      }
+
+      const years = [...new Set(data.map(p => p.year))].sort((a,b) => currentSort === 'oldest' ? a-b : b-a);
+      years.forEach(yr => {
+        const items = data.filter(p => p.year === yr);
+        const group = document.createElement('div');
+        group.className = 'year-group';
+        const hdr = document.createElement('div');
+        hdr.className = 'year-header';
+        hdr.innerHTML = `<span class="year-label">${yr}</span><span class="year-count">${items.length} item${items.length!==1?'s':''}</span>`;
+        group.appendChild(hdr);
+        items.forEach((p, i) => group.appendChild(pubCard(p, i+1)));
+        container.appendChild(group);
+      });
+    }
+
+    function pubCard(p, i) {
+      const div = document.createElement('div');
+      div.className = 'pub-item';
+      div.innerHTML = `
+        <span class="pub-num">${i}</span>
+        <div class="pub-body">
+          <div class="pub-title">${p.title}</div>
+          <div class="pub-authors">${p.authors}</div>
+          <div class="pub-venue-row">
+            <span class="pub-venue">${p.venue}</span>
+            ${p.if ? `<span class="pub-if">IF ${p.if}</span>` : ''}
+            <span class="type-badge ${p.type}">${typeLabel(p.type)}</span>
+            ${p.doi ? `<a class="pdf-link" href="${p.doi}" target="_blank">DOI ↗</a>` : ''}
+            ${p.pdf ? `<a class="pdf-link" href="${p.pdf}" target="_blank">↓ PDF</a>` : ''}
+          </div>
+        </div>
+      `;
+      return div;
+    }
+
+    // ── Events ─────────────────────────────────────
+    document.getElementById('searchInput').addEventListener('input', e => {
+      currentSearch = e.target.value.trim();
+      render();
+    });
+    document.getElementById('typePills').addEventListener('click', e => {
+      const pill = e.target.closest('.type-pill');
+      if (!pill) return;
+      document.querySelectorAll('.type-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentType = pill.dataset.type;
+      render();
+    });
+    document.getElementById('sortSelect').addEventListener('change', e => {
+      currentSort = e.target.value;
+      render();
+    });
+
+    // ── Theme ──────────────────────────────────────
+    const btn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('pm-theme') || 'light';
+    html.setAttribute('data-theme', saved);
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('pm-theme', next);
+    });
+
+    render();
+  </script>
+</body>
+</html>
