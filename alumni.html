@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lab Alumni & Students – Prof. Palash Mandal, PDPIAS, CHARUSAT University" />
+  <title>Lab Alumni & Students - Prof. Palash Mandal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root, [data-theme="light"] {
+      --bg:        #f7f5f0;
+      --surface:   #ffffff;
+      --surface2:  #f0ede6;
+      --ink:       #1a1a1a;
+      --ink2:      #2e2e2e;
+      --muted:     #5a5a5a;
+      --rule:      #dedad2;
+      --accent:    #2a5f8f;
+      --accent2:   #b56b3a;
+      --accent-bg: #edf3f9;
+      --tag-bg:    #f0ede6;
+      --tag-ink:   #4a4a4a;
+      --serif:     'EB Garamond', Georgia, serif;
+      --sans:      'Inter', system-ui, sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg:        #141412;
+      --surface:   #1e1c19;
+      --surface2:  #252320;
+      --ink:       #ede9e0;
+      --ink2:      #ccc8bc;
+      --muted:     #807b6e;
+      --rule:      #2e2c28;
+      --accent:    #6aa3d4;
+      --accent2:   #d4895a;
+      --accent-bg: #1a2a3e;
+      --tag-bg:    #252320;
+      --tag-ink:   #a8a49a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 15px; line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 5vw, 3.5rem); height: 52px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .nav-back:hover { color: var(--accent); text-decoration: none; }
+    .nav-title { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .theme-btn {
+      background: var(--surface2); border: 1px solid var(--rule);
+      border-radius: 20px; width: 52px; height: 27px;
+      cursor: pointer; position: relative; flex-shrink: 0; transition: background .25s;
+    }
+    .theme-btn::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 19px; height: 19px; border-radius: 50%;
+      background: var(--accent); transition: transform .25s;
+    }
+    [data-theme="dark"] .theme-btn::after { transform: translateX(25px); }
+    .theme-icon { position: absolute; top: 50%; transform: translateY(-50%); font-size: 11px; pointer-events: none; }
+    .theme-icon.sun { left: 6px; }
+    .theme-icon.moon { right: 5px; }
+
+    /* ── Layout ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 clamp(1.2rem, 5vw, 2rem); }
+
+    /* ── Page header ── */
+    .page-header { padding: 3rem 0 2rem; border-bottom: 1px solid var(--rule); }
+    .page-header h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 400; color: var(--ink); }
+    .page-header .sub { font-size: 0.9rem; color: var(--muted); margin-top: .4rem; max-width: 560px; }
+
+    /* ── Section ── */
+    .team-section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+    .team-section:last-child { border-bottom: none; }
+    .section-eyebrow {
+      font-family: var(--serif); font-size: 1.45rem; font-weight: 400;
+      letter-spacing: -.01em; color: var(--ink); margin-bottom: .3rem; line-height: 1.2;
+    }
+    .section-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.8rem; }
+
+    /* ── Team grid / person card ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1.1rem;
+    }
+    .person-card {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color .2s, transform .2s;
+      display: flex; flex-direction: column;
+    }
+    .person-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .person-photo-wrap {
+      width: 100%; aspect-ratio: 1 / 1; overflow: hidden;
+      background: linear-gradient(135deg, var(--accent-bg), var(--surface2));
+    }
+    .person-photo-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .3s;
+    }
+    .person-card:hover .person-photo-wrap img { transform: scale(1.04); }
+    .person-body { padding: .85rem 1rem 1rem; flex: 1; display: flex; flex-direction: column; gap: .2rem; }
+    .person-name {
+      font-family: var(--serif); font-size: 1.02rem; color: var(--ink);
+      line-height: 1.3;
+    }
+    .person-name a { color: var(--ink); }
+    .person-name a:hover { color: var(--accent); }
+    .person-name .li-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 15px; height: 15px; margin-left: 5px;
+      border-radius: 3px; background: var(--accent); color: #fff;
+      font-size: 9px; font-weight: 700; vertical-align: middle;
+      transform: translateY(-1px);
+    }
+    .person-role { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+    .person-org { font-size: 0.78rem; color: var(--accent2); margin-top: .1rem; line-height: 1.4; }
+
+    /* ── Footer ── */
+    footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.78rem; color: var(--muted); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    /* ── Responsive ── */
+    @media (max-width: 620px) {
+      .team-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: .8rem; }
+      .person-body { padding: .65rem .7rem .8rem; }
+      .person-name { font-size: 0.92rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-back" href="index.html">← Prof. Palash Mandal</a>
+    <span class="nav-title">Lab Alumni & Students</span>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon sun">☀</span>
+        <span class="theme-icon moon">☾</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Lab Alumni & Students</h1>
+      <p class="sub">
+        Past and present members of the lab, spanning BITS Pilani and
+        PDPIAS, CHARUSAT University.
+      </p>
+    </div>
+
+    <!-- ── CURRENT STUDENTS ── -->
+    <section class="team-section">
+      <p class="section-eyebrow">Current Students</p>
+      <p class="section-sub">Active members of the lab at PDPIAS, CHARUSAT University.</p>
+      <div class="team-grid">
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/manali.png" alt="Manali Patel">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Manali Patel</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/harsh.png" alt="Harshraj Solanki">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Harshraj Solanki</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/suraj.png" alt="Suraj Mishra">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Suraj Mishra</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/simran.png" alt="Simran Samanta">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Simran Samanta</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── ALUMNI — CHARUSAT ── -->
+    <section class="team-section">
+      <p class="section-eyebrow">Alumni — CHARUSAT</p>
+      <p class="section-sub">Former lab members from PDPIAS, CHARUSAT University.</p>
+      <div class="team-grid">
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/kirti.png" alt="Dr. Kirti Parwaani">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Kirti Parwaani</div>
+            <div class="person-role">Postdoctoral Scholar, College of Medicine, University of Kentucky</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/fpatel.png" alt="Dr. Farhin Patel">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Farhin Patel</div>
+            <div class="person-role">Postdoc, University of Connecticut Health Center</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/dhara.png" alt="Dr. Dhara Patel">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Dhara Patel</div>
+            <div class="person-role">Research Officer, U.N. Mehta Institute of Cardiology and Research Center</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/hiral.png" alt="Dr. Hiral Aghara">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Hiral Aghara</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/pchadhaa.png" alt="Dr. Prashsti Chadhaa">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Prashsti Chadhaa</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── ALUMNI — BITS PILANI ── -->
+    <section class="team-section">
+      <p class="section-eyebrow">Alumni — BITS Pilani</p>
+      <p class="section-sub">Former lab members from the BITS Pilani years.</p>
+      <div class="team-grid">
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/image.png" alt="Dr. Venkata Harini Kema">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Venkata Harini Kema</div>
+            <div class="person-role">Lab Manager, ATS GeneTech Pvt Ltd</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/reddy.png" alt="Dr. Nishank Reddy">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Nishank Reddy</div>
+            <div class="person-role">Research Associate, IISc</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/salaka.png" alt="Dr. Raghava Jagadeesh Salaka">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Raghava Jagadeesh Salaka</div>
+            <div class="person-role">Post-Doctoral Fellow, University of Wisconsin–Madison</div>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-wrap">
+            <img src="images/imran.png" alt="Dr. Imran Khan">
+          </div>
+          <div class="person-body">
+            <div class="person-name">Dr. Imran Khan</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer>
+    <p>Prof. Palash Mandal · <a href="index.html">← Back to Profile</a></p>
+    <p style="margin-top:.3rem; opacity:.6;">PDPIAS, CHARUSAT University · palashmandal.bio@charusat.ac.in</p>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('pm-theme') || 'light';
+    html.setAttribute('data-theme', saved);
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('pm-theme', next);
+    });
+  </script>
+</body>
+</html>
